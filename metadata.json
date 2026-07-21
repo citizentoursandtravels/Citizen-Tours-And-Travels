@@ -1,0 +1,6 @@
+{
+  "name": "Citizen Tours & Travels",
+  "description": "Premium travel agency in Ahmedabad offering car rentals, tempo travellers, bus rental, and tour services since 2007.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
