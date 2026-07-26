@@ -250,13 +250,14 @@
         </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-navy-800">
+        <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-navy-800">
           <a href="#hero" class="hover:text-gold-600 transition-colors">Home</a>
           <a href="#fleet" class="hover:text-gold-600 transition-colors">Fleet</a>
           <a href="#packages" class="hover:text-gold-600 transition-colors">Tour Packages</a>
           <a href="#about" class="hover:text-gold-600 transition-colors">About Us</a>
           <a href="#services" class="hover:text-gold-600 transition-colors">Services</a>
           <a href="#why-us" class="hover:text-gold-600 transition-colors">Why Us</a>
+          <a href="#gallery" class="hover:text-gold-600 transition-colors">Gallery</a>
           <a href="#faq" class="hover:text-gold-600 transition-colors">FAQs</a>
           <a href="#contact" class="hover:text-gold-600 transition-colors">Contact</a>
         </nav>
@@ -301,6 +302,7 @@
           <a href="#about" class="hover:text-gold-600 transition-colors">About Us</a>
           <a href="#services" class="hover:text-gold-600 transition-colors">Services</a>
           <a href="#why-us" class="hover:text-gold-600 transition-colors">Why Choose Us</a>
+          <a href="#gallery" class="hover:text-gold-600 transition-colors">Photo Gallery</a>
           <a href="#faq" class="hover:text-gold-600 transition-colors">FAQs</a>
           <a href="#contact" class="hover:text-gold-600 transition-colors">Contact</a>
         </nav>
@@ -1088,8 +1090,18 @@
 
         <div class="lg:col-span-6">
           <div class="grid grid-cols-2 gap-4">
-            <img src="./assets/images/gallery1.jpg" alt="Fleet Gallery 1" class="rounded-2xl object-cover h-56 w-full shadow-md">
-            <img src="./assets/images/gallery2.jpg" alt="Fleet Gallery 2" class="rounded-2xl object-cover h-56 w-full shadow-md mt-6">
+            <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-md group h-56 relative" data-gallery-index="0" data-gallery-src="./assets/images/gallery1.jpg" data-gallery-title="Clean sanitized Innova Crysta interiors and plush seating">
+              <img src="./assets/images/gallery1.jpg" alt="Fleet Upholstery & Hygiene" class="object-cover h-full w-full group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+              </div>
+            </div>
+            <div class="gallery-item cursor-pointer rounded-2xl overflow-hidden shadow-md group h-56 mt-6 relative" data-gallery-index="1" data-gallery-src="./assets/images/gallery2.jpg" data-gallery-title="Force Tempo Traveller with comfortable pushback recliner seats">
+              <img src="./assets/images/gallery2.jpg" alt="Tempo Traveller Interior" class="object-cover h-full w-full group-hover:scale-105 transition-transform duration-500" loading="lazy">
+              <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1126,6 +1138,86 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================
+       FLEET & TRAVEL GALLERY SECTION
+       ========================================== -->
+  <section id="gallery" class="py-20 bg-white border-t border-navy-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-extrabold text-gold-600 tracking-wider uppercase bg-gold-500/10 px-3 py-1 rounded-full">Photo Showcase</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-navy-950 mt-3">
+          Our Fleet & Tour Gallery
+        </h2>
+        <p class="text-slate-600 mt-2 text-sm">
+          Click any image below to view high-resolution vehicle interiors, fleet setups, and scenic tour highlights.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="0" data-gallery-src="./assets/images/innova.jpg" data-gallery-title="Toyota Innova Crysta - Captain Seats & Dual AC Comfort">
+          <img src="./assets/images/innova.jpg" alt="Toyota Innova Crysta" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="1" data-gallery-src="./assets/images/urbania.jpg" data-gallery-title="Force Urbania Luxury - VIP Recliner Seating Van">
+          <img src="./assets/images/urbania.jpg" alt="Force Urbania Luxury" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="2" data-gallery-src="./assets/images/tempo.jpg" data-gallery-title="Force Tempo Traveller - 17 to 26 Seater Group Transit">
+          <img src="./assets/images/tempo.jpg" alt="Force Tempo Traveller" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="3" data-gallery-src="./assets/images/fortuner.jpg" data-gallery-title="Toyota Fortuner Legender - Corporate & Wedding SUV">
+          <img src="./assets/images/fortuner.jpg" alt="Toyota Fortuner SUV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="4" data-gallery-src="./assets/images/ertiga.jpg" data-gallery-title="Maruti Suzuki Ertiga - Family MUV Rental">
+          <img src="./assets/images/ertiga.jpg" alt="Maruti Ertiga Rental" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="5" data-gallery-src="./assets/images/gujarat.jpg" data-gallery-title="White Rann of Kutch - Gujarat Heritage Holiday Tour">
+          <img src="./assets/images/gujarat.jpg" alt="Rann of Kutch Gujarat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="6" data-gallery-src="./assets/images/somnath.jpg" data-gallery-title="Somnath & Dwarka Coastal Temple Tour Highway">
+          <img src="./assets/images/somnath.jpg" alt="Somnath Temple Tour" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+        <div class="gallery-item group relative rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300 h-56" data-gallery-index="7" data-gallery-src="./assets/images/statue.jpg" data-gallery-title="Statue of Unity Express Day Trip Kevadia">
+          <img src="./assets/images/statue.jpg" alt="Statue of Unity Express" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy">
+          <div class="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-8 h-8 text-gold-400"></i>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
@@ -1378,8 +1470,20 @@
               <i data-lucide="mail" class="w-5 h-5 text-gold-600 shrink-0 mt-0.5"></i>
               <div>
                 <span class="text-xs font-bold text-navy-900 block">Email Inquiry</span>
-                <span class="text-xs text-slate-600">citizentravels.ahmedabad@gmail.com</span>
+                <a href="mailto:citizentravels.ahmedabad@gmail.com" class="text-xs text-slate-600 hover:text-gold-600 transition-colors">citizentravels.ahmedabad@gmail.com</a>
               </div>
+            </div>
+
+            <!-- Embedded Interactive Google Map -->
+            <div class="mt-4 rounded-xl overflow-hidden border border-navy-100 h-48 shadow-xs">
+              <iframe 
+                title="Citizen Tours & Travels Head Office Location Google Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.5303289069113!2d72.55850917601673!3d23.03734061563283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84f479133a87%3A0x6b89e3a6c2f9d6ab!2sNavrangpura%2C%20Ahmedabad%2C%20Gujarat%20380009!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                class="w-full h-full border-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
 
@@ -1666,6 +1770,27 @@
 
       </div>
 
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       LIGHTBOX MODAL DIALOG
+       ========================================== -->
+  <div id="lightbox-modal" class="modal-backdrop fixed inset-0 z-50 bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <button id="close-lightbox" class="absolute top-6 right-6 p-3 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all cursor-pointer z-10" aria-label="Close Lightbox">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <button id="prev-lightbox" class="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all cursor-pointer z-10" aria-label="Previous Image">
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+    <button id="next-lightbox" class="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-all cursor-pointer z-10" aria-label="Next Image">
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+    
+    <div class="max-w-4xl max-h-[85vh] flex flex-col items-center justify-center p-2">
+      <img id="lightbox-image" src="" alt="Gallery Preview" class="max-h-[75vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border-2 border-white/20">
+      <p id="lightbox-caption" class="text-white text-xs sm:text-sm font-semibold mt-4 text-center bg-navy-900/80 px-4 py-2 rounded-xl backdrop-blur-sm border border-white/10 max-w-xl"></p>
     </div>
   </div>
 

@@ -551,4 +551,67 @@ Booked from Citizen Tours & Travels Website
       if (contactForm) contactForm.reset();
     });
   }
+
+  /* ==========================================
+     10. Lightbox Modal Gallery Logic
+     ========================================== */
+  const lightboxModal = document.getElementById("lightbox-modal");
+  const lightboxImg = document.getElementById("lightbox-image");
+  const lightboxCap = document.getElementById("lightbox-caption");
+  const closeLightboxBtn = document.getElementById("close-lightbox");
+  const prevLightboxBtn = document.getElementById("prev-lightbox");
+  const nextLightboxBtn = document.getElementById("next-lightbox");
+
+  let galleryItemsList = [];
+  let currentGalleryIndex = 0;
+
+  function updateGalleryItemsList() {
+    galleryItemsList = Array.from(document.querySelectorAll(".gallery-item"));
+  }
+
+  function showLightbox(index) {
+    updateGalleryItemsList();
+    if (galleryItemsList.length === 0) return;
+    if (index < 0) index = galleryItemsList.length - 1;
+    if (index >= galleryItemsList.length) index = 0;
+
+    currentGalleryIndex = index;
+    const item = galleryItemsList[currentGalleryIndex];
+    if (!item) return;
+
+    const src = item.getAttribute("data-gallery-src") || item.querySelector("img")?.src;
+    const title = item.getAttribute("data-gallery-title") || item.querySelector("img")?.alt || "Gallery Image";
+
+    if (lightboxImg) lightboxImg.src = src;
+    if (lightboxCap) lightboxCap.textContent = title;
+    if (lightboxModal) lightboxModal.classList.add("active");
+  }
+
+  function closeLightbox() {
+    if (lightboxModal) lightboxModal.classList.remove("active");
+  }
+
+  document.querySelectorAll(".gallery-item").forEach((item, idx) => {
+    item.addEventListener("click", () => {
+      showLightbox(idx);
+    });
+  });
+
+  if (closeLightboxBtn) closeLightboxBtn.addEventListener("click", closeLightbox);
+  if (prevLightboxBtn) prevLightboxBtn.addEventListener("click", () => showLightbox(currentGalleryIndex - 1));
+  if (nextLightboxBtn) nextLightboxBtn.addEventListener("click", () => showLightbox(currentGalleryIndex + 1));
+  if (lightboxModal) {
+    lightboxModal.addEventListener("click", (e) => {
+      if (e.target === lightboxModal) closeLightbox();
+    });
+  }
+
+  // Keyboard navigation for Lightbox
+  document.addEventListener("keydown", (e) => {
+    if (lightboxModal && lightboxModal.classList.contains("active")) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showLightbox(currentGalleryIndex - 1);
+      if (e.key === "ArrowRight") showLightbox(currentGalleryIndex + 1);
+    }
+  });
 });
