@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Compass, Phone, MessageSquare } from "lucide-react";
+import { Menu, X, Phone, MessageSquare, MapPin, Clock, Star, Car } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logoImg from "../assets/images/citizen_travels_logo_1784098450742.jpg";
 
@@ -40,7 +40,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
     setIsMobileMenuOpen(false);
     const targetElement = document.querySelector(href);
     if (targetElement) {
-      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 80;
+      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 100;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
@@ -50,84 +50,112 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-navy-100 shadow-md py-3"
-            : "bg-white/80 backdrop-blur-xs border-b border-navy-100/50 py-4"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a
-              href="#home"
-              onClick={(e) => handleNavLinkClick(e, "#home")}
-              className="flex items-center gap-2 group cursor-pointer"
-            >
-              <img
-                src={logoImg}
-                alt="Citizen Travels Logo"
-                className="w-10 h-10 rounded-xl object-contain shadow-md border border-navy-100 bg-white group-hover:scale-105 transition-transform duration-300"
-                referrerPolicy="no-referrer"
-              />
-              <div className="flex flex-col">
-                <span className="font-display font-extrabold text-navy-950 text-base md:text-lg tracking-tight uppercase leading-none">
-                  Citizen <span className="text-gold-600 font-medium">Tours</span>
-                </span>
-                <span className="text-[10px] font-mono text-navy-600 tracking-widest uppercase mt-0.5">
-                  & Travels • Ahmedabad
-                </span>
-              </div>
-            </a>
-
-            {/* Desktop Nav Links */}
-            <nav className="hidden lg:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavLinkClick(e, link.href)}
-                  className="text-sm font-semibold text-navy-800 hover:text-gold-600 transition-colors duration-200 uppercase tracking-wider relative group"
-                >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
-            </nav>
-
-            {/* Desktop Action CTAs */}
-            <div className="hidden lg:flex items-center gap-4">
+      <header className="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        {/* Topmost Dark Navy Announcement & Quick Contact Bar */}
+        <div className="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 font-medium">
+            <div className="flex items-center gap-6 overflow-x-auto no-scrollbar py-0.5">
               <a
                 href="tel:+919724002200"
-                className="flex items-center gap-1.5 text-navy-800 hover:text-blue-600 transition-colors text-sm font-semibold"
+                className="flex items-center gap-1.5 hover:text-gold-400 transition-colors whitespace-nowrap"
               >
-                <Phone size={15} className="text-blue-600" />
-                +91 97240 02200
+                <Phone size={14} className="text-gold-400" />
+                <span>+91 97240 02200</span>
               </a>
-              <button
-                onClick={onOpenBooking}
-                className="bg-gradient-to-r from-gold-600 via-gold-500 to-gold-600 hover:from-gold-500 hover:to-gold-400 text-white font-bold py-2 px-5 rounded-lg text-xs uppercase tracking-wider shadow-md hover:shadow-gold-500/20 hover:-translate-y-0.5 transition-all"
+              <a
+                href="https://wa.me/919724002200"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors whitespace-nowrap"
               >
-                Book Now
-              </button>
+                <MessageSquare size={14} className="text-emerald-400" />
+                <span>WhatsApp Quick Booking</span>
+              </a>
+              <div className="hidden md:flex items-center gap-1.5 text-slate-300 whitespace-nowrap">
+                <MapPin size={14} className="text-gold-400" />
+                <span>Navrangpura, Ahmedabad, Gujarat</span>
+              </div>
             </div>
 
-            {/* Mobile Hamburger Toggle */}
-            <div className="flex lg:hidden items-center gap-3">
-              <button
-                onClick={onOpenBooking}
-                className="bg-gradient-to-r from-gold-600 to-gold-400 text-white font-bold py-1.5 px-3 rounded-md text-[10px] uppercase tracking-wider"
+            <div className="flex items-center gap-5 ml-auto text-slate-300">
+              <div className="hidden lg:flex items-center gap-1.5 whitespace-nowrap">
+                <Clock size={14} className="text-gold-400" />
+                <span>24/7 Operations</span>
+              </div>
+              <div className="flex items-center gap-1.5 font-semibold text-white whitespace-nowrap">
+                <Star size={14} className="text-gold-400 fill-gold-400" />
+                <span>4.9/5 Rating <span className="text-slate-400 font-normal">(1,200+ Reviews)</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Navbar Row */}
+        <div
+          className={`w-full transition-all duration-300 ${
+            isScrolled
+              ? "bg-white/95 backdrop-blur-md shadow-md py-2.5 border-b border-slate-100"
+              : "bg-white py-3.5 border-b border-slate-100"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <a
+                href="#home"
+                onClick={(e) => handleNavLinkClick(e, "#home")}
+                className="flex items-center gap-3 group cursor-pointer"
               >
-                Book
-              </button>
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-navy-950 hover:text-gold-600 p-1 bg-navy-50 rounded-md border border-navy-100"
-                aria-label="Toggle Mobile Menu"
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
+                <img
+                  src={logoImg}
+                  alt="Citizen Travels Logo"
+                  className="w-10 h-10 rounded-xl object-contain shadow-xs border border-slate-200 bg-white group-hover:scale-105 transition-transform duration-300"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="flex flex-col">
+                  <span className="font-display font-black text-navy-900 text-lg md:text-xl tracking-tight uppercase leading-none">
+                    CITIZEN
+                  </span>
+                  <span className="text-[11px] font-bold text-gold-600 tracking-wider uppercase mt-0.5">
+                    TOURS & TRAVELS
+                  </span>
+                </div>
+              </a>
+
+              {/* Desktop Nav Links */}
+              <nav className="hidden lg:flex items-center gap-7">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavLinkClick(e, link.href)}
+                    className="text-xs font-bold text-slate-800 hover:text-navy-900 transition-colors duration-200 uppercase tracking-wider relative group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300 group-hover:w-full" />
+                  </a>
+                ))}
+              </nav>
+
+              {/* Right CTA Button: Book Ride */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={onOpenBooking}
+                  className="bg-navy-900 hover:bg-navy-950 text-white font-bold px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-md hover:shadow-lg flex items-center gap-2 transition-all cursor-pointer border border-navy-800"
+                >
+                  <Car size={16} className="text-gold-400" />
+                  <span>Book Ride</span>
+                </button>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="lg:hidden text-navy-900 hover:text-gold-600 p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors"
+                  aria-label="Toggle Navigation Menu"
+                >
+                  {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                </button>
+              </div>
             </div>
           </div>
         </div>

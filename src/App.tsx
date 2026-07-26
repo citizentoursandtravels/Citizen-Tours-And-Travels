@@ -157,9 +157,9 @@ export default function App() {
           {/* Elegant Footer Block */}
           <Footer />
 
-          {/* Floating Actions Panel */}
-          <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-            {/* A. Scroll-To-Top Trigger Button */}
+          {/* Floating Actions Panel on Bottom Right */}
+          <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+            {/* Scroll-To-Top Trigger Button */}
             <AnimatePresence>
               {showScrollTop && (
                 <motion.button
@@ -167,46 +167,41 @@ export default function App() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0, opacity: 0 }}
                   onClick={handleScrollTop}
-                  className="w-12 h-12 rounded-full bg-navy-900 border border-gold-500/30 text-gold-400 flex items-center justify-center shadow-lg hover:bg-gold-500 hover:text-navy-950 hover:border-gold-500 transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-full bg-slate-900 border border-slate-700 text-gold-400 flex items-center justify-center shadow-lg hover:bg-gold-500 hover:text-navy-950 transition-all cursor-pointer mb-1"
                   aria-label="Scroll to Top"
                 >
-                  <ArrowUp size={20} className="stroke-[2.5px]" />
+                  <ArrowUp size={18} className="stroke-[2.5px]" />
                 </motion.button>
               )}
             </AnimatePresence>
-          </div>
 
-          {/* B. Bouncing Floating Call & WhatsApp Buttons in Bottom Left */}
-          <div className="fixed bottom-6 left-6 z-40 flex flex-col gap-3">
-            {/* Call Button */}
+            {/* Call Floating Button (Dark Navy Circle with Gold Phone Icon) */}
             <motion.a
               href="tel:+919724002200"
-              animate={{ y: [0, -6, 0] }}
+              animate={{ y: [0, -4, 0] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut", delay: 0.3 }}
-              className="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-2xl hover:bg-blue-500 hover:scale-110 transition-all duration-300 cursor-pointer relative group"
-              aria-label="Call Customer Support Coordinator"
+              className="w-13 h-13 rounded-full bg-[#0B132B] text-gold-400 flex items-center justify-center shadow-xl hover:bg-black hover:scale-105 transition-all duration-300 cursor-pointer relative group border border-navy-800"
+              aria-label="Call Customer Support"
             >
-              <Phone size={22} className="stroke-[2.5px]" />
-              {/* Optional tooltip styling */}
-              <span className="absolute left-16 bg-white text-navy-950 text-[10px] font-bold py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none border border-navy-150">
+              <Phone size={22} className="stroke-[2.5px] text-gold-400 fill-gold-400/20" />
+              <span className="absolute right-16 bg-slate-900 text-white text-xs font-bold py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none border border-slate-800">
                 Call: +91 97240 02200
               </span>
             </motion.a>
 
-            {/* WhatsApp Button */}
+            {/* WhatsApp Floating Button (Emerald Green Circle) */}
             <motion.a
               href="https://wa.me/919724002200?text=Hello%20Citizen%20Tours%20%26%20Travels!%20I'm%20looking%20to%20reserve%20a%20vehicle%20or%20package."
               target="_blank"
               rel="noopener noreferrer"
-              animate={{ y: [0, -6, 0] }}
+              animate={{ y: [0, -4, 0] }}
               transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-              className="w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:bg-[#20ba5a] hover:scale-110 transition-all duration-300 cursor-pointer relative group"
-              aria-label="Contact WhatsApp Support Coordinator"
+              className="w-13 h-13 rounded-full bg-[#10B981] text-white flex items-center justify-center shadow-xl hover:bg-[#059669] hover:scale-105 transition-all duration-300 cursor-pointer relative group"
+              aria-label="WhatsApp Support"
             >
-              <MessageSquare size={26} className="fill-white" />
-              {/* Optional tooltip styling */}
-              <span className="absolute left-16 bg-white text-navy-950 text-[10px] font-bold py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none border border-navy-150">
-                Chat with Us
+              <MessageSquare size={24} className="fill-white stroke-none" />
+              <span className="absolute right-16 bg-slate-900 text-white text-xs font-bold py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none border border-slate-800">
+                Chat on WhatsApp
               </span>
             </motion.a>
           </div>
