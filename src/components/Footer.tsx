@@ -33,7 +33,11 @@ export function Footer() {
             <div className="flex items-center gap-2">
               <img
                 src={logoImg}
-                alt="Citizen Travels Logo"
+                alt="Citizen Tours and Travels Ahmedabad Headquarters Logo"
+                loading="lazy"
+                decoding="async"
+                width={36}
+                height={36}
                 className="w-9 h-9 rounded-xl object-contain shadow-md border border-navy-100 bg-white"
                 referrerPolicy="no-referrer"
               />

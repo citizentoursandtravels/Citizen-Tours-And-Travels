@@ -42,7 +42,11 @@ export function About() {
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-navy-200/50">
               <img
                 src={aboutImg}
-                alt="Spotless luxury vehicle"
+                alt="Citizen Travels fleet of clean sanitized vehicles for car rental in Ahmedabad"
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={450}
                 className="w-full h-[450px] object-cover hover:scale-105 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />

@@ -79,7 +79,11 @@ export function Fleet({ onOpenBooking }: FleetProps) {
                 <div className="relative h-48 overflow-hidden bg-navy-100">
                   <img
                     src={veh.image}
-                    alt={veh.name}
+                    alt={`${veh.name} Car Rental in Ahmedabad - ${veh.category} with driver`}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={200}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />

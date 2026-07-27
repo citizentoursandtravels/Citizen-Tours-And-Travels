@@ -73,7 +73,11 @@ export function Testimonials() {
                 <div className="flex items-center gap-4 pt-4 border-t border-navy-100/80">
                   <img
                     src={active.avatar}
-                    alt={active.name}
+                    alt={`Customer review by ${active.name} from ${active.location}`}
+                    loading="lazy"
+                    decoding="async"
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-full object-cover border-2 border-gold-500"
                     referrerPolicy="no-referrer"
                   />

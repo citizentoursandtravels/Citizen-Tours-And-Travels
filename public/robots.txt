@@ -1,0 +1,14 @@
+# Robots.txt for Citizen Tours & Travels Ahmedabad
+User-agent: *
+Allow: /
+
+# Disallow administrative or temporary parameters if any
+Disallow: /api/
+Disallow: /*?*booking=
+
+# Crawl Delay
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://citizentoursandtravels.com/sitemap.xml
+Sitemap: https://ais-dev-gijhvvgvpyndbv2uyupfet-206470094520.asia-southeast1.run.app/sitemap.xml

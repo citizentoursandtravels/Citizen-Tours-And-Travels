@@ -47,7 +47,11 @@ export function BlogPreview() {
                 <div className="relative h-48 overflow-hidden bg-navy-100">
                   <img
                     src={post.image}
-                    alt={post.title}
+                    alt={`${post.title} - Gujarat Road Trip & Travel Chronicle Guide`}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={200}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />

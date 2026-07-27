@@ -17,6 +17,7 @@ import { BlogPreview } from "./components/BlogPreview";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { BookingModal } from "./components/BookingModal";
+import { SEOHead } from "./components/SEOHead";
 
 export default function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -25,18 +26,46 @@ export default function App() {
   
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentSection, setCurrentSection] = useState<string>("home");
 
-  // Monitor Scroll for Scroll-To-Top button
+  // Track hash change and scroll section for dynamic SEO updates
   useEffect(() => {
+    const updateSectionFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        setCurrentSection(hash);
+      }
+    };
+
+    updateSectionFromHash();
+    window.addEventListener("hashchange", updateSectionFromHash);
+
     const handleScroll = () => {
       if (window.scrollY > 400) {
         setShowScrollTop(true);
       } else {
         setShowScrollTop(false);
       }
+
+      // Check sections in view
+      const sections = ["home", "about", "services", "fleet", "packages", "faqs", "blog", "contact"];
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 250 && rect.bottom >= 250) {
+            setCurrentSection(sectionId);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("hashchange", updateSectionFromHash);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Simulate premium initial page loading screen
@@ -69,6 +98,9 @@ export default function App() {
   return (
     <div className="relative min-h-screen font-sans bg-navy-50 text-navy-950 overflow-x-hidden selection:bg-gold-500 selection:text-navy-950">
       
+      {/* Dynamic SEO Head Management */}
+      <SEOHead currentSection={currentSection} />
+
       {/* Premium Architectural Ambient Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         {/* Repeating grid-lines and grid-dots patterns */}

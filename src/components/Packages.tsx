@@ -60,7 +60,11 @@ export function Packages({ onOpenBooking }: PackagesProps) {
                 <div className="relative h-56 overflow-hidden bg-navy-100">
                   <img
                     src={pkg.image}
-                    alt={pkg.title}
+                    alt={`${pkg.title} Tour Package from Ahmedabad - Citizen Tours & Travels`}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={224}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
                   />

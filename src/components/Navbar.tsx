@@ -108,7 +108,11 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
               >
                 <img
                   src={logoImg}
-                  alt="Citizen Travels Logo"
+                  alt="Citizen Tours and Travels Ahmedabad Logo - Premium Car Rental"
+                  loading="eager"
+                  decoding="async"
+                  width={40}
+                  height={40}
                   className="w-10 h-10 rounded-xl object-contain shadow-xs border border-slate-200 bg-white group-hover:scale-105 transition-transform duration-300"
                   referrerPolicy="no-referrer"
                 />
