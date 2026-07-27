@@ -6,49 +6,49 @@ interface SEOProps {
 
 const SECTION_SEO_DATA: Record<string, { title: string; description: string; keywords: string; canonical: string }> = {
   home: {
-    title: "Citizen Tours & Travels | Best Car Rental & Outstation Taxi Service Ahmedabad",
+    title: "Car Rental & Taxi Service in Ahmedabad | Citizen Tours",
     description: "Rent Sedans, Innova Crysta, Tempo Travellers & Luxury Buses in Ahmedabad. 24/7 Taxi Rental, Local Sightseeing & Outstation Tour Packages with Verified Drivers.",
     keywords: "car rental ahmedabad, taxi service ahmedabad, innova crysta rental ahmedabad, tempo traveller ahmedabad, outstation cab ahmedabad, citizen tours and travels, ahmedabad cab service",
     canonical: "https://citizentoursandtravels.com/",
   },
   services: {
-    title: "Car Rental & Transport Services in Ahmedabad | Citizen Tours & Travels",
+    title: "Cab Rental & Transport Services Ahmedabad | Citizen Tours",
     description: "Comprehensive transport solutions in Ahmedabad: Airport Pickups, Corporate Employee Transit, Wedding Bus Contracts, Outstation Cabs, and Sightseeing.",
     keywords: "ahmedabad airport taxi, corporate car hire ahmedabad, wedding bus rental ahmedabad, local full day cab ahmedabad",
     canonical: "https://citizentoursandtravels.com/#services",
   },
   fleet: {
-    title: "Vehicle Fleet - Sedans, Innova Crysta, Tempo Traveller & Buses | Citizen Travels",
+    title: "Rent Innova Crysta & Tempo Traveller | Citizen Tours",
     description: "Explore our sanitized fleet: Swift Dzire, Ertiga, Toyota Innova Crysta, 12-26 Seater AC Tempo Travellers, Force Urbania, and 56-Seater Luxury Coaches.",
     keywords: "innova crysta price per km ahmedabad, 17 seater tempo traveller rental ahmedabad, force urbania rent ahmedabad, luxury bus hire ahmedabad",
     canonical: "https://citizentoursandtravels.com/#fleet",
   },
   packages: {
-    title: "Gujarat & Rajasthan Tour Packages from Ahmedabad | Citizen Travels",
+    title: "Gujarat & Rajasthan Tour Packages | Citizen Travels",
     description: "Handcrafted tour packages: Statue of Unity Weekend, Somnath Dwarka Pilgrimage, Rajasthan Palace Circuit, Udaipur Romantic Getaway, and Mount Abu.",
     keywords: "statue of unity tour package ahmedabad, somnath dwarka tour package, gujarat heritage tour, rajasthan tour package from ahmedabad",
     canonical: "https://citizentoursandtravels.com/#packages",
   },
   about: {
-    title: "About Us - 18+ Years of Travel Excellence in Ahmedabad | Citizen Travels",
+    title: "About Us: Trusted Car Rental Ahmedabad | Citizen Tours",
     description: "Founded in 2007, Citizen Tours & Travels is Ahmedabad's most trusted transport provider with 18+ years of highway experience and verified chauffeurs.",
     keywords: "about citizen tours and travels, travel agency in navrangpura ahmedabad, best tour operator ahmedabad",
     canonical: "https://citizentoursandtravels.com/#about",
   },
   contact: {
-    title: "Contact Us & Instant Cab Inquiry | Citizen Tours & Travels Ahmedabad",
+    title: "Contact Us for Cab Rental in Ahmedabad | Citizen Tours",
     description: "Contact Citizen Tours & Travels 24/7 at +91 97240 02200 or visit our head office at Navrangpura, Ahmedabad for instant quotes and bookings.",
     keywords: "contact citizen travels ahmedabad, citizen travels phone number, ahmedabad taxi booking number",
     canonical: "https://citizentoursandtravels.com/#contact",
   },
   faqs: {
-    title: "Frequently Asked Questions | Citizen Tours & Travels Ahmedabad",
+    title: "Car Rental & Taxi Booking FAQs | Citizen Tours Ahmedabad",
     description: "Find answers to booking procedures, driver allowances, toll charges, cancellation policies, and night charges for cab rentals in Ahmedabad.",
     keywords: "ahmedabad taxi faq, car rental pricing rules ahmedabad, tempo traveller booking terms",
     canonical: "https://citizentoursandtravels.com/#faqs",
   },
   blog: {
-    title: "Travel Chronicles & Gujarat Travel Guides | Citizen Tours & Travels",
+    title: "Gujarat Travel Guides & Road Trip Tips | Citizen Tours",
     description: "Expert road-trip routing secrets, hidden heritage spots inside Gujarat, and essential tips for group travel and outstation cab safety.",
     keywords: "gujarat travel guide, road trip tips ahmedabad, best time to visit statue of unity, somnath route guide",
     canonical: "https://citizentoursandtravels.com/#blog",
