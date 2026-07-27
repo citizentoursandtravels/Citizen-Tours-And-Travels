@@ -275,8 +275,8 @@ export function Contact() {
                     <a href="tel:+919724002200" className="block text-navy-950 font-bold text-base hover:text-blue-600 transition-colors mt-0.5">
                       +91 97240 02200
                     </a>
-                    <a href="tel:+917926442248" className="block text-navy-700 text-sm hover:text-blue-600 transition-colors">
-                      +91 79 2644 2248
+                    <a href="tel:+919227002400" className="block text-navy-700 text-sm hover:text-blue-600 transition-colors">
+                      +91 92270 02400
                     </a>
                   </div>
                 </div>
