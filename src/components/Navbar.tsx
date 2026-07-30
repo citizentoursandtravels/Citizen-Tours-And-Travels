@@ -34,8 +34,6 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
     { name: "Services", path: "/services" },
     { name: "Our Vehicles", path: "/fleet" },
     { name: "Tour Packages", path: "/tour-packages" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Testimonials", path: "/testimonials" },
     { name: "FAQ", path: "/faq" },
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },

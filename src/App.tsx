@@ -13,8 +13,6 @@ import { AboutPage } from "./pages/AboutPage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { FleetPage } from "./pages/FleetPage";
 import { TourPackagesPage } from "./pages/TourPackagesPage";
-import { GalleryPage } from "./pages/GalleryPage";
-import { TestimonialsPage } from "./pages/TestimonialsPage";
 import { FAQPage } from "./pages/FAQPage";
 import { BlogPage } from "./pages/BlogPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -132,8 +130,6 @@ export default function App() {
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/fleet" element={<FleetPage />} />
                 <Route path="/tour-packages" element={<TourPackagesPage />} />
-                <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/testimonials" element={<TestimonialsPage />} />
                 <Route path="/faq" element={<FAQPage />} />
                 <Route path="/blog" element={<BlogPage />} />
                 <Route path="/contact" element={<ContactPage />} />

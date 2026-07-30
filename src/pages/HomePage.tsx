@@ -9,7 +9,6 @@ import { Stats } from "../components/Stats";
 import { WhyChooseUs } from "../components/WhyChooseUs";
 import { Packages } from "../components/Packages";
 import { BookingProcess } from "../components/BookingProcess";
-import { Testimonials } from "../components/Testimonials";
 import { BlogPreview } from "../components/BlogPreview";
 import { FAQ } from "../components/FAQ";
 import { Contact } from "../components/Contact";
@@ -117,22 +116,7 @@ export function HomePage({ onOpenBooking }: HomePageProps) {
       {/* 8. Booking Process Timeline */}
       <BookingProcess />
 
-      {/* 9. Testimonials */}
-      <section className="relative">
-        <Testimonials />
-        <div className="bg-slate-100 py-6 text-center border-t border-slate-200">
-          <Link
-            to="/testimonials"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-extrabold px-6 py-3 rounded-full text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
-          >
-            <span>Read More Verified Customer Reviews</span>
-            <ArrowRight size={14} className="text-amber-400" />
-          </Link>
-        </div>
-      </section>
-
-      {/* 10. Travel Guides / Blog */}
+      {/* 9. Travel Guides / Blog */}
       <section className="relative">
         <BlogPreview />
         <div className="bg-slate-900 py-6 text-center border-t border-slate-800">

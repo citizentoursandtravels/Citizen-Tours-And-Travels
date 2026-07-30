@@ -92,8 +92,6 @@ export function Footer() {
                 { name: "Our Services", path: "/services" },
                 { name: "Our Vehicles", path: "/fleet" },
                 { name: "Tour Packages", path: "/tour-packages" },
-                { name: "Photo Gallery", path: "/gallery" },
-                { name: "Testimonials", path: "/testimonials" },
                 { name: "Client FAQs", path: "/faq" },
                 { name: "Travel Blog", path: "/blog" },
                 { name: "Contact Us", path: "/contact" },

@@ -32,18 +32,6 @@ const ROUTE_SEO_DATA: Record<string, { title: string; description: string; keywo
     keywords: "statue of unity tour package ahmedabad, somnath dwarka tour package, gujarat heritage tour, rajasthan tour package from ahmedabad",
     canonical: "https://citizentoursandtravels.com/tour-packages",
   },
-  "/gallery": {
-    title: "Vehicle & Tour Photo Gallery | Citizen Tours & Travels",
-    description: "View photos of clean Toyota Innova Crysta, Maharaja Tempo Travellers, luxury buses, wedding decor cars, and tour memories from Rann of Kutch and Statue of Unity.",
-    keywords: "citizen travels photo gallery, tempo traveller photos ahmedabad, innova crysta interior pictures",
-    canonical: "https://citizentoursandtravels.com/gallery",
-  },
-  "/testimonials": {
-    title: "Customer Reviews & Ratings (4.9/5) | Citizen Tours & Travels",
-    description: "Read authentic customer reviews and traveler testimonials for Citizen Tours & Travels Ahmedabad. 4.9/5 Google rating based on 1200+ satisfied clients.",
-    keywords: "citizen tours reviews, best cab service reviews ahmedabad, citizen travels ratings",
-    canonical: "https://citizentoursandtravels.com/testimonials",
-  },
   "/faq": {
     title: "Car Rental & Taxi Booking FAQs | Citizen Tours & Travels",
     description: "Find answers to booking procedures, driver allowances, toll charges, cancellation policies, and night charges for cab rentals in Ahmedabad.",
