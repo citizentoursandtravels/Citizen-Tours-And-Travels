@@ -1,161 +1,307 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
-import { ShieldCheck, MapPin, Navigation, ArrowRight, Check } from "lucide-react";
+import {
+  Compass,
+  ArrowRight,
+  Clock,
+  Gift,
+  Calendar,
+  Building2,
+  Utensils,
+  Camera,
+  Car,
+  FileText,
+  MessageSquare,
+  Send,
+  Star,
+  ShieldCheck,
+  Headphones,
+  Lock,
+} from "lucide-react";
+import heroBgImg from "../assets/images/regenerated_image_1784098622037.png";
+import offerCardImg from "../assets/images/regenerated_image_1785402653034.jpg";
 
 interface HeroProps {
   onOpenBooking: () => void;
 }
 
 export function Hero({ onOpenBooking }: HeroProps) {
-  const [pickup, setPickup] = useState("Ahmedabad");
-  const [destination, setDestination] = useState("Gujarat, Rajasthan...");
-
-  const handleQuoteClick = (e: React.FormEvent) => {
-    e.preventDefault();
-    onOpenBooking();
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 25, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 60 } },
   };
 
   return (
     <section
       id="home"
-      className="relative min-h-[90vh] flex flex-col items-center justify-center bg-gradient-to-b from-slate-50 via-white to-slate-50 overflow-hidden pt-28 pb-16"
+      className="relative min-h-screen flex flex-col justify-center bg-slate-950 text-white overflow-hidden pt-28 pb-16 lg:pt-36 lg:pb-20"
     >
-      {/* Background Soft Glow Radial Ambient Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-amber-100/30 via-blue-50/40 to-transparent blur-3xl opacity-70 rounded-full" />
+      {/* Background Full-Bleed Image with Dark Atmospheric Gradient Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroBgImg}
+          alt="Citizens Tours & Travels Scenic Landscape"
+          className="w-full h-full object-cover object-center scale-105 filter brightness-75"
+          referrerPolicy="no-referrer"
+        />
+        {/* Gradients to match screenshot mood */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-slate-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/60" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center"
         >
-          {/* Top Pill Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFBEB] border border-amber-300/60 text-[#B45309] text-xs font-semibold tracking-wide mb-8 shadow-xs"
-          >
-            <ShieldCheck className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>Ahmedabad's Most Trusted Tour & Taxi Partner</span>
-          </motion.div>
+          {/* LEFT COLUMN: Main Typography & CTA */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            {/* Elegant Script Subtitle */}
+            <motion.p
+              variants={itemVariants}
+              className="font-serif italic text-amber-400 text-2xl sm:text-3xl md:text-4xl font-normal mb-2 tracking-wide drop-shadow-md"
+            >
+              Explore The World With
+            </motion.p>
 
-          {/* Core Main Title */}
-          <motion.h1
-            variants={itemVariants}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6 text-slate-900"
-          >
-            <span>Explore India in </span>
-            <span className="text-[#D97706]">Comfort & </span>
-            <span className="text-[#2563EB]">Luxury</span>
-          </motion.h1>
+            {/* Giant Main Display Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-[0.95] text-white mb-4 drop-shadow-2xl"
+            >
+              CITIZEN <br />
+              <span className="text-white">TOURS & TRAVELS</span>
+            </motion.h1>
 
-          {/* Subheading text */}
-          <motion.p
-            variants={itemVariants}
-            className="text-slate-600 text-base sm:text-lg md:text-xl font-normal max-w-3xl mb-10 leading-relaxed"
-          >
-            Rent top-conditioned Sedans, SUVs, Innova Crysta, 17-25 Seater Tempo Travellers, and Force Urbania in Ahmedabad. Transparent per-km pricing with zero hidden charges.
-          </motion.p>
+            {/* Coral Accent Line under title */}
+            <motion.div
+              variants={itemVariants}
+              className="w-24 sm:w-32 h-1.5 bg-gradient-to-r from-orange-500 to-rose-500 rounded-full mb-6"
+            />
 
-          {/* Interactive Search / Quote Card Box */}
-          <motion.form
-            variants={itemVariants}
-            onSubmit={handleQuoteClick}
-            className="w-full max-w-4xl bg-white rounded-2xl p-4 sm:p-5 shadow-xl shadow-slate-200/60 border border-slate-100/90 mb-8 text-left"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-end">
-              {/* Pick Location */}
-              <div className="md:col-span-4">
-                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5 ml-1">
-                  Pick Location
-                </label>
-                <div className="relative bg-slate-50 hover:bg-slate-100/80 transition-colors border border-slate-200/90 rounded-xl px-3.5 py-3 flex items-center gap-2.5">
-                  <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
-                  <input
-                    type="text"
-                    value={pickup}
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder="Enter pickup city"
-                    className="w-full bg-transparent text-sm font-semibold text-slate-900 focus:outline-none placeholder-slate-400"
-                  />
+            {/* Description Subtext */}
+            <motion.p
+              variants={itemVariants}
+              className="text-slate-200 text-base sm:text-lg md:text-xl font-normal max-w-xl mb-8 leading-relaxed drop-shadow-sm"
+            >
+              Citizen Tours & Travels provides reliable car rentals, tempo travellers, bus hire, airport transfers, and outstation travel from Ahmedabad. We are committed to safe, comfortable, and affordable journeys with professional drivers and well-maintained vehicles.
+            </motion.p>
+
+            {/* Action Buttons Row */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center gap-4 mb-12 w-full sm:w-auto"
+            >
+              {/* Primary Coral Orange Pill Button */}
+              <button
+                onClick={onOpenBooking}
+                className="w-full sm:w-auto bg-gradient-to-r from-orange-500 via-rose-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-extrabold px-8 py-4 rounded-full text-sm uppercase tracking-wider shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 flex items-center justify-center gap-3 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                <span>EXPLORE PACKAGES</span>
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                  <ArrowRight size={14} className="stroke-[3]" />
+                </div>
+              </button>
+
+              {/* Secondary Dark Translucent Button */}
+              <button
+                onClick={onOpenBooking}
+                className="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-900 text-white border border-slate-700/80 backdrop-blur-md font-bold px-7 py-4 rounded-full text-sm uppercase tracking-wider shadow-lg flex items-center justify-center gap-2.5 transition-all duration-300 hover:border-slate-500 cursor-pointer"
+              >
+                <Compass size={18} className="text-amber-400" />
+                <span>PLAN MY TRIP</span>
+              </button>
+            </motion.div>
+
+            {/* Bottom Trust Indicators Badges Row */}
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full pt-4 border-t border-slate-800/80"
+            >
+              {/* Google Rated */}
+              <div className="flex items-center gap-2.5 bg-slate-900/60 backdrop-blur-sm p-2.5 rounded-xl border border-slate-800">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 font-extrabold text-sm flex items-center justify-center shrink-0">
+                  G
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold leading-tight">Rated by Travelers</span>
+                  <span className="text-xs font-bold text-white flex items-center gap-1">
+                    On Google <Star size={11} className="fill-amber-400 text-amber-400" /> 4.9
+                  </span>
                 </div>
               </div>
 
-              {/* Destination / Package */}
-              <div className="md:col-span-5">
-                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5 ml-1">
-                  Destination / Package
-                </label>
-                <div className="relative bg-slate-50 hover:bg-slate-100/80 transition-colors border border-slate-200/90 rounded-xl px-3.5 py-3 flex items-center gap-2.5">
-                  <Navigation className="w-4 h-4 text-blue-600 shrink-0" />
-                  <input
-                    type="text"
-                    value={destination}
-                    onChange={(e) => setDestination(e.target.value)}
-                    placeholder="Where to?"
-                    className="w-full bg-transparent text-sm font-semibold text-slate-900 focus:outline-none placeholder-slate-400"
-                  />
+              {/* Verified Vehicles */}
+              <div className="flex items-center gap-2.5 bg-slate-900/60 backdrop-blur-sm p-2.5 rounded-xl border border-slate-800">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                  <ShieldCheck size={18} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold leading-tight">Verified</span>
+                  <span className="text-xs font-bold text-white">Vehicles & Hotels</span>
                 </div>
               </div>
 
-              {/* Action Button */}
-              <div className="md:col-span-3">
-                <button
-                  type="submit"
-                  className="w-full bg-[#B5781E] hover:bg-[#9A6313] text-white font-bold py-3.5 px-5 rounded-xl text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
-                >
-                  <span>Get Free Quote</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+              {/* 24x7 Support */}
+              <div className="flex items-center gap-2.5 bg-slate-900/60 backdrop-blur-sm p-2.5 rounded-xl border border-slate-800">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+                  <Headphones size={18} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold leading-tight">24X7 Travel</span>
+                  <span className="text-xs font-bold text-white">Support</span>
+                </div>
               </div>
-            </div>
-          </motion.form>
 
-          {/* Trust Checkmarks Row Under Card */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-slate-700 text-xs sm:text-sm font-semibold"
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 shrink-0">
-                <Check className="w-3 h-3 stroke-[3]" />
+              {/* Secure Booking */}
+              <div className="flex items-center gap-2.5 bg-slate-900/60 backdrop-blur-sm p-2.5 rounded-xl border border-slate-800">
+                <div className="w-8 h-8 rounded-lg bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0">
+                  <Lock size={18} />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-400 font-bold leading-tight">Secure</span>
+                  <span className="text-xs font-bold text-white">Booking</span>
+                </div>
               </div>
-              <span>Clean Sanitized Vehicles</span>
-            </div>
+            </motion.div>
+          </div>
 
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 shrink-0">
-                <Check className="w-3 h-3 stroke-[3]" />
+          {/* RIGHT COLUMN: Featured Limited Offer Card */}
+          <div className="lg:col-span-5 flex justify-center">
+            <motion.div
+              variants={itemVariants}
+              className="relative w-full max-w-md bg-white text-slate-900 rounded-3xl shadow-2xl overflow-hidden border border-slate-200 transition-all duration-300 hover:shadow-orange-500/10"
+            >
+              {/* Protruding Clock LIMITED OFFER Sticker Badge */}
+              <div className="absolute top-3 left-3 z-20 flex items-center bg-white border-2 border-slate-900 rounded-full shadow-lg overflow-hidden">
+                <div className="bg-slate-900 text-white p-1.5 flex items-center justify-center">
+                  <Clock size={16} />
+                </div>
+                <span className="bg-rose-600 text-white text-[11px] font-black uppercase tracking-wider px-3 py-1">
+                  LIMITED OFFER
+                </span>
               </div>
-              <span>Experienced Drivers</span>
-            </div>
 
-            <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-600 shrink-0">
-                <Check className="w-3 h-3 stroke-[3]" />
+              {/* Card Banner Image */}
+              <div className="relative h-52 sm:h-56 overflow-hidden bg-slate-900">
+                <img
+                  src={offerCardImg}
+                  alt="Special Goa/Gujarat Package Offer"
+                  className="w-full h-full object-cover filter brightness-95 hover:scale-105 transition-transform duration-700"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                {/* Styled Graphic Overlay Text on Image */}
+                <div className="absolute bottom-3 left-4 right-4 text-center">
+                  <h3 className="font-serif italic text-amber-300 text-3xl sm:text-4xl drop-shadow-md">
+                    Saurashtra Special
+                  </h3>
+                  <p className="text-[11px] font-extrabold uppercase tracking-widest text-slate-200 mt-0.5">
+                    SUN • SAND • SEA • SERENITY
+                  </p>
+                </div>
               </div>
-              <span>Doorstep Pickup</span>
-            </div>
-          </motion.div>
+
+              {/* Red Coral Highlight Banner */}
+              <div className="bg-rose-600 text-white text-xs font-black uppercase tracking-wider py-2 px-4 text-center flex items-center justify-center gap-2 shadow-inner">
+                <Gift size={15} />
+                <span>HURRY UP! BEST DEALS AWAIT YOU</span>
+              </div>
+
+              {/* Card Body */}
+              <div className="p-5 sm:p-6 bg-white">
+                <div className="grid grid-cols-12 gap-4 items-center">
+                  {/* Left Price Block */}
+                  <div className="col-span-5 border-r border-slate-200 pr-3 flex flex-col justify-center">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                      STARTING FROM
+                    </span>
+                    <span className="text-xs font-bold text-slate-400 line-through mt-0.5">
+                      ₹10,500/-
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-black text-rose-600 leading-none my-0.5">
+                      ₹4,999/-
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                      PER PERSON
+                    </span>
+                  </div>
+
+                  {/* Right Features Bullets List */}
+                  <div className="col-span-7 space-y-1.5 text-xs font-bold text-slate-700">
+                    <div className="flex items-center gap-2">
+                      <Calendar size={13} className="text-rose-500 shrink-0" />
+                      <span>3 Nights / 4 Days</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Building2 size={13} className="text-rose-500 shrink-0" />
+                      <span>3★ Resort with Pool</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Utensils size={13} className="text-rose-500 shrink-0" />
+                      <span>Breakfast & Dinner</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Camera size={13} className="text-rose-500 shrink-0" />
+                      <span>Sightseeing Included</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Car size={13} className="text-rose-500 shrink-0" />
+                      <span>Private AC Transfers</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card Action Buttons Row */}
+                <div className="grid grid-cols-12 gap-2 mt-5 pt-4 border-t border-slate-100">
+                  {/* Coral Enquire Button */}
+                  <button
+                    onClick={onOpenBooking}
+                    className="col-span-7 bg-gradient-to-r from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700 text-white font-extrabold py-3 px-3 rounded-xl text-xs uppercase tracking-wider shadow-md hover:shadow-lg flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                  >
+                    <Send size={13} />
+                    <span>ENQUIRE NOW</span>
+                  </button>
+
+                  {/* WhatsApp Button */}
+                  <a
+                    href="https://wa.me/919724002200?text=Hello%20Citizen%20Tours!%20I%20am%20interested%20in%20the%20Special%20Tour%20Package."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="col-span-2 bg-[#25D366] hover:bg-[#1faa53] text-white flex items-center justify-center rounded-xl py-3 shadow-md transition-all cursor-pointer"
+                    aria-label="WhatsApp Enquire"
+                  >
+                    <MessageSquare size={18} className="fill-white stroke-none" />
+                  </a>
+
+                  {/* PDF Itinerary Button */}
+                  <button
+                    onClick={onOpenBooking}
+                    className="col-span-3 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-1 transition-all border border-slate-200 cursor-pointer"
+                  >
+                    <FileText size={13} className="text-rose-500" />
+                    <span>PDF</span>
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
+
