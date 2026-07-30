@@ -1,20 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Compass, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, ChevronRight } from "lucide-react";
 import logoImg from "../assets/images/citizen_travels_logo_1784098450742.jpg";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
+  const handleScrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const socialLinks = [
@@ -25,15 +18,15 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-navy-50 border-t border-navy-100 text-navy-950 pt-20 pb-10 overflow-hidden">
+    <footer className="bg-navy-50 border-t border-navy-100 text-navy-950 pt-16 pb-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
           {/* Column 1: Company Info (4 Columns) */}
-          <div className="lg:col-span-4 space-y-6">
-            <div className="flex items-center gap-2">
+          <div className="lg:col-span-4 space-y-5 text-left">
+            <Link to="/" onClick={handleScrollTop} className="flex items-center gap-2.5">
               <img
                 src={logoImg}
-                alt="Citizen Tours and Travels Ahmedabad Headquarters Logo"
+                alt="Citizen Tours and Travels Logo"
                 loading="lazy"
                 decoding="async"
                 width={36}
@@ -49,92 +42,114 @@ export function Footer() {
                   & Tours • Ahmedabad
                 </span>
               </div>
-            </div>
+            </Link>
 
             <p className="text-navy-600 text-xs leading-relaxed font-normal">
               Citizen Tours & Travels is Ahmedabad's premier transport service provider since 2007. We operate premium, clean, sanitized vehicles with expert highway chauffeurs to offer perfect journeys.
             </p>
 
+            <div className="space-y-2 text-xs font-medium text-slate-700 pt-1">
+              <div className="flex items-center gap-2">
+                <MapPin size={14} className="text-orange-500 shrink-0" />
+                <span>Ground Floor, C.G. Road, Navrangpura, Ahmedabad</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={14} className="text-orange-500 shrink-0" />
+                <span>+91 97240 02200 / +91 92270 02400</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail size={14} className="text-orange-500 shrink-0" />
+                <span>citizentoursandtravels07@gmail.com</span>
+              </div>
+            </div>
+
             {/* Social Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5 pt-2">
               {socialLinks.map((soc, sIdx) => (
                 <a
                   key={sIdx}
                   href={soc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white border border-navy-200 text-navy-600 hover:text-white hover:bg-gold-500 hover:border-gold-500 flex items-center justify-center transition-all duration-200 shadow-xs"
+                  className="w-8 h-8 rounded-lg bg-white border border-navy-200 text-navy-600 hover:text-white hover:bg-orange-500 hover:border-orange-500 flex items-center justify-center transition-all duration-200 shadow-xs"
                   aria-label={soc.label}
                 >
-                  <soc.icon size={16} />
+                  <soc.icon size={15} />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Column 2: Quick Links (2 Columns) */}
-          <div className="lg:col-span-2 space-y-5">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-gold-600 border-b border-navy-100 pb-2">
-              Quick Links
+          <div className="lg:col-span-2 space-y-4 text-left">
+            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-orange-600 border-b border-navy-100 pb-2">
+              All Pages
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {[
-                { name: "Home", href: "#home" },
-                { name: "About Us", href: "#about" },
-                { name: "Our Services", href: "#services" },
-                { name: "Vehicle Fleet", href: "#fleet" },
-                { name: "Tour Packages", href: "#packages" },
-                { name: "Client FAQs", href: "#faqs" },
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+                { name: "Our Services", path: "/services" },
+                { name: "Our Vehicles", path: "/fleet" },
+                { name: "Tour Packages", path: "/tour-packages" },
+                { name: "Photo Gallery", path: "/gallery" },
+                { name: "Testimonials", path: "/testimonials" },
+                { name: "Client FAQs", path: "/faq" },
+                { name: "Travel Blog", path: "/blog" },
+                { name: "Contact Us", path: "/contact" },
+                { name: "Book My Ride", path: "/book-my-ride" },
               ].map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className="text-navy-700 hover:text-gold-600 text-xs flex items-center gap-1 transition-colors duration-200"
+                  <Link
+                    to={link.path}
+                    onClick={handleScrollTop}
+                    className="text-navy-700 hover:text-orange-600 text-xs flex items-center gap-1 transition-colors duration-200"
                   >
-                    <ChevronRight size={12} className="text-gold-500/50" />
+                    <ChevronRight size={12} className="text-orange-500/50" />
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Column 3: Services (3 Columns) */}
-          <div className="lg:col-span-3 space-y-5">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-gold-600 border-b border-navy-100 pb-2">
+          <div className="lg:col-span-3 space-y-4 text-left">
+            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-orange-600 border-b border-navy-100 pb-2">
               Our Services
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {[
                 "Premium Car Rental",
-                "Tempo Traveller (9-26S)",
+                "Tempo Traveller (12-26S)",
                 "Airport Pick & Drop",
                 "Wedding Coach Transit",
                 "Corporate Staff Contracts",
                 "Outstation Tour Cab",
                 "Pilgrimage Circuit Loops",
+                "Local City Full Day",
+                "Railway Station Transfers",
               ].map((srv) => (
                 <li key={srv}>
-                  <a
-                    href="#services"
-                    onClick={(e) => handleLinkClick(e, "#services")}
-                    className="text-navy-700 hover:text-gold-600 text-xs flex items-center gap-1 transition-colors duration-200"
+                  <Link
+                    to="/services"
+                    onClick={handleScrollTop}
+                    className="text-navy-700 hover:text-orange-600 text-xs flex items-center gap-1 transition-colors duration-200"
                   >
-                    <ChevronRight size={12} className="text-gold-500/50" />
+                    <ChevronRight size={12} className="text-orange-500/50" />
                     {srv}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Column 4: Tour Packages (3 Columns) */}
-          <div className="lg:col-span-3 space-y-5">
-            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-gold-600 border-b border-navy-100 pb-2">
+          <div className="lg:col-span-3 space-y-4 text-left">
+            <h4 className="font-display text-xs font-bold uppercase tracking-widest text-orange-600 border-b border-navy-100 pb-2">
               Tour Packages
             </h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2">
               {[
                 "Gujarat Heritage Loop",
                 "Rajasthan Palace Circuit",
@@ -145,14 +160,14 @@ export function Footer() {
                 "Bespoke Tailor-Made Tour",
               ].map((pkg) => (
                 <li key={pkg}>
-                  <a
-                    href="#packages"
-                    onClick={(e) => handleLinkClick(e, "#packages")}
-                    className="text-navy-700 hover:text-gold-600 text-xs flex items-center gap-1 transition-colors duration-200"
+                  <Link
+                    to="/tour-packages"
+                    onClick={handleScrollTop}
+                    className="text-navy-700 hover:text-orange-600 text-xs flex items-center gap-1 transition-colors duration-200"
                   >
-                    <ChevronRight size={12} className="text-gold-500/50" />
+                    <ChevronRight size={12} className="text-orange-500/50" />
                     {pkg}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -160,15 +175,16 @@ export function Footer() {
         </div>
 
         {/* Divider & Bottom Section */}
-        <div className="pt-8 border-t border-navy-150 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-xs text-navy-500">
-          <p>© {currentYear} Citizen Tours & Travels. All Rights Reserved. Crafted for premium road hospitality.</p>
+        <div className="pt-6 border-t border-navy-150 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-xs text-navy-500">
+          <p>© {currentYear} Citizen Tours & Travels Pvt. Ltd. All Rights Reserved. Navrangpura, Ahmedabad.</p>
           <div className="flex items-center gap-6">
-            <a href="#about" onClick={(e) => handleLinkClick(e, "#about")} className="hover:text-gold-600 transition-colors">Privacy Policy</a>
-            <a href="#contact" onClick={(e) => handleLinkClick(e, "#contact")} className="hover:text-gold-600 transition-colors">Terms of Service</a>
-            <a href="#faqs" onClick={(e) => handleLinkClick(e, "#faqs")} className="hover:text-gold-600 transition-colors">Sitemap</a>
+            <Link to="/about" onClick={handleScrollTop} className="hover:text-orange-600 transition-colors">Privacy Policy</Link>
+            <Link to="/contact" onClick={handleScrollTop} className="hover:text-orange-600 transition-colors">Terms of Service</Link>
+            <Link to="/faq" onClick={handleScrollTop} className="hover:text-orange-600 transition-colors">Sitemap</Link>
           </div>
         </div>
       </div>
     </footer>
   );
 }
+

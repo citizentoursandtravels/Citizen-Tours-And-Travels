@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Phone, Mail, MapPin, Clock, Star, Search, Heart, ChevronDown, MessageSquare, Instagram, Facebook, Youtube } from "lucide-react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Menu, X, Phone, Mail, MapPin, Clock, Star, Search, Heart, MessageSquare, Instagram, Facebook, Youtube, Car } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logoImg from "../assets/images/citizen_travels_logo_1784098450742.jpg";
 
 interface NavbarProps {
-  onOpenBooking: () => void;
+  onOpenBooking?: () => void;
 }
 
 export function Navbar({ onOpenBooking }: NavbarProps) {
@@ -12,6 +13,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,23 +29,29 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home", hasDropdown: false },
-    { name: "Car Rental", href: "#fleet", hasDropdown: true },
-    { name: "Tempo Traveller", href: "#fleet", hasDropdown: true },
-    { name: "Tour Packages", href: "#packages", hasDropdown: true },
-    { name: "Weekend Getaways", href: "#services", hasDropdown: false },
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+    { name: "Services", path: "/services" },
+    { name: "Our Vehicles", path: "/fleet" },
+    { name: "Tour Packages", path: "/tour-packages" },
+    { name: "Gallery", path: "/gallery" },
+    { name: "Testimonials", path: "/testimonials" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Blog", path: "/blog" },
+    { name: "Contact Us", path: "/contact" },
   ];
 
-  const handleNavLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
+  const handleNavClick = () => {
     setIsMobileMenuOpen(false);
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setIsSearchOpen(false);
+      navigate(`/fleet?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
     }
   };
 
@@ -120,9 +128,9 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between gap-4">
               {/* Logo & Brand Title */}
-              <a
-                href="#home"
-                onClick={(e) => handleNavLinkClick(e, "#home")}
+              <Link
+                to="/"
+                onClick={handleNavClick}
                 className="flex items-center gap-2.5 group cursor-pointer shrink-0"
               >
                 <div className="relative">
@@ -149,30 +157,40 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                     TOURS & TRAVELS PVT. LTD.
                   </span>
                 </div>
-              </a>
+              </Link>
 
               {/* Desktop Nav Links */}
-              <nav className="hidden lg:flex items-center gap-6">
+              <nav className="hidden xl:flex items-center gap-4 2xl:gap-5">
                 {navLinks.map((link) => (
-                  <a
+                  <NavLink
                     key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavLinkClick(e, link.href)}
-                    className={`text-xs font-bold transition-colors duration-200 flex items-center gap-1 uppercase tracking-wider relative group py-1 ${
-                      link.name === "Home" ? "text-orange-600" : "text-slate-800 hover:text-orange-600"
-                    }`}
+                    to={link.path}
+                    onClick={handleNavClick}
+                    className={({ isActive }) =>
+                      `text-[11px] 2xl:text-xs font-bold transition-colors duration-200 uppercase tracking-wider relative py-1 ${
+                        isActive
+                          ? "text-orange-600 font-black"
+                          : "text-slate-800 hover:text-orange-600"
+                      }`
+                    }
                   >
-                    <span>{link.name}</span>
-                    {link.hasDropdown && <ChevronDown size={14} className="text-slate-400 group-hover:text-orange-600 transition-transform duration-200 group-hover:rotate-180" />}
-                    {link.name === "Home" && (
-                      <span className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-600 rounded-full" />
+                    {({ isActive }) => (
+                      <>
+                        <span>{link.name}</span>
+                        {isActive && (
+                          <motion.span
+                            layoutId="activeNavUnderline"
+                            className="absolute bottom-0 left-0 w-full h-0.5 bg-orange-600 rounded-full"
+                          />
+                        )}
+                      </>
                     )}
-                  </a>
+                  </NavLink>
                 ))}
               </nav>
 
               {/* Right Side Actions Bar */}
-              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
                 {/* Search Icon Circle */}
                 <button
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -182,29 +200,22 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   <Search size={16} />
                 </button>
 
-                {/* Wishlist / Heart Icon Circle */}
-                <button
-                  onClick={onOpenBooking}
-                  className="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer hidden sm:flex"
-                  aria-label="Wishlist"
+                {/* Book My Ride CTA Button */}
+                <Link
+                  to="/book-my-ride"
+                  onClick={handleNavClick}
+                  className="bg-gradient-to-r from-orange-500 via-rose-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-extrabold px-3.5 sm:px-4 py-2 rounded-full text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer flex items-center gap-1.5"
                 >
-                  <Heart size={16} />
-                </button>
-
-                {/* Coral Orange "Get Free Quote" Button */}
-                <button
-                  onClick={onOpenBooking}
-                  className="bg-gradient-to-r from-orange-500 via-rose-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white font-extrabold px-4 sm:px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer active:scale-95"
-                >
-                  Get Free Quote
-                </button>
+                  <Car size={14} />
+                  <span>Book My Ride</span>
+                </Link>
 
                 {/* WhatsApp Green Circle Button */}
                 <a
                   href="https://wa.me/919724002200?text=Hello%20Citizen%20Tours!%20I%20would%20like%20to%20get%20a%20quote."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#1faa53] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-[#25D366] hover:bg-[#1faa53] text-white flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer hidden sm:flex"
                   aria-label="WhatsApp Support"
                 >
                   <MessageSquare size={18} className="fill-white stroke-none" />
@@ -213,7 +224,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                 {/* Mobile Menu Toggle */}
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="lg:hidden text-slate-800 hover:text-orange-600 p-2 rounded-lg bg-slate-100 transition-colors ml-1"
+                  className="xl:hidden text-slate-800 hover:text-orange-600 p-2 rounded-lg bg-slate-100 transition-colors ml-1"
                   aria-label="Toggle Navigation Menu"
                 >
                   {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -230,7 +241,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   exit={{ height: 0, opacity: 0 }}
                   className="overflow-hidden pt-3"
                 >
-                  <div className="flex items-center gap-2 bg-slate-100 rounded-xl px-4 py-2 border border-slate-200">
+                  <form onSubmit={handleSearchSubmit} className="flex items-center gap-2 bg-slate-100 rounded-xl px-4 py-2 border border-slate-200">
                     <Search size={16} className="text-slate-400" />
                     <input
                       type="text"
@@ -240,12 +251,12 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                       className="w-full bg-transparent text-xs font-medium text-slate-900 focus:outline-none"
                     />
                     <button
-                      onClick={onOpenBooking}
-                      className="bg-orange-500 text-white text-[11px] font-bold px-3 py-1 rounded-lg uppercase"
+                      type="submit"
+                      className="bg-orange-500 text-white text-[11px] font-bold px-3 py-1 rounded-lg uppercase cursor-pointer"
                     >
                       Find
                     </button>
-                  </div>
+                  </form>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -262,7 +273,7 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm xl:hidden"
             />
 
             <motion.div
@@ -270,17 +281,17 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white z-50 p-6 shadow-2xl flex flex-col justify-between lg:hidden"
+              className="fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white z-50 p-6 shadow-2xl flex flex-col justify-between overflow-y-auto xl:hidden"
             >
               <div>
-                <div className="flex items-center justify-between pb-5 border-b border-slate-100 mb-6">
+                <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
                   <div className="flex items-center gap-2">
                     <img
                       src={logoImg}
                       alt="Citizen Travels Logo"
                       className="w-8 h-8 rounded-lg object-contain border border-slate-200"
                     />
-                    <span className="font-display font-extrabold text-slate-900 text-sm tracking-tight uppercase">
+                    <span className="font-display font-extrabold text-slate-900 text-xs uppercase">
                       Citizen Tours & Travels
                     </span>
                   </div>
@@ -292,22 +303,41 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   </button>
                 </div>
 
-                <nav className="flex flex-col gap-3">
+                <nav className="flex flex-col gap-1.5">
                   {navLinks.map((link) => (
-                    <a
+                    <NavLink
                       key={link.name}
-                      href={link.href}
-                      onClick={(e) => handleNavLinkClick(e, link.href)}
-                      className="text-sm font-bold text-slate-800 hover:text-orange-600 py-2 border-b border-slate-50 flex items-center justify-between uppercase tracking-wider"
+                      to={link.path}
+                      onClick={handleNavClick}
+                      className={({ isActive }) =>
+                        `text-xs font-bold py-2.5 px-3 rounded-xl transition-colors uppercase tracking-wider flex items-center justify-between ${
+                          isActive
+                            ? "bg-orange-500 text-white font-black shadow-sm"
+                            : "text-slate-800 hover:bg-slate-100 hover:text-orange-600"
+                        }`
+                      }
                     >
                       <span>{link.name}</span>
-                      {link.hasDropdown && <ChevronDown size={14} className="text-slate-400" />}
-                    </a>
+                    </NavLink>
                   ))}
+                  <NavLink
+                    to="/book-my-ride"
+                    onClick={handleNavClick}
+                    className={({ isActive }) =>
+                      `text-xs font-extrabold py-3 px-3 rounded-xl transition-colors uppercase tracking-wider mt-2 flex items-center justify-center gap-2 ${
+                        isActive
+                          ? "bg-rose-600 text-white"
+                          : "bg-gradient-to-r from-orange-500 to-rose-500 text-white shadow-md"
+                      }`
+                    }
+                  >
+                    <Car size={16} />
+                    <span>Book My Ride</span>
+                  </NavLink>
                 </nav>
               </div>
 
-              <div className="space-y-3 pt-6 border-t border-slate-100">
+              <div className="space-y-3 pt-5 border-t border-slate-100 mt-6">
                 <a
                   href="tel:+919724002200"
                   className="flex items-center justify-center gap-2 text-slate-800 bg-slate-100 font-bold py-2.5 rounded-xl text-xs uppercase tracking-wider"
@@ -315,15 +345,15 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   <Phone size={15} className="text-orange-500" />
                   +91 97240 02200
                 </a>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    onOpenBooking();
-                  }}
-                  className="w-full bg-gradient-to-r from-orange-500 to-rose-500 text-white font-extrabold py-3 rounded-xl text-xs uppercase tracking-wider shadow-md"
+                <a
+                  href="https://wa.me/919724002200?text=Hello%20Citizen%20Tours!%20I'd%20like%20to%20get%20a%20quote."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-extrabold py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-md"
                 >
-                  Get Free Quote
-                </button>
+                  <MessageSquare size={16} />
+                  <span>WhatsApp Quote</span>
+                </a>
               </div>
             </motion.div>
           </>
@@ -332,4 +362,5 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
     </>
   );
 }
+
 

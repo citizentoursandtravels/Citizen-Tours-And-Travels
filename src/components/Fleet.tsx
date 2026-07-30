@@ -32,7 +32,7 @@ export function Fleet({ onOpenBooking }: FleetProps) {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-gold-600 block mb-3">
-            Our Elite Fleet
+            Our Vehicles
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-950 tracking-tight mb-4">
             Well-Maintained <span className="text-gold-600">Vehicles For Every Group</span>

@@ -1,63 +1,80 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-interface SEOProps {
-  currentSection?: string;
-}
-
-const SECTION_SEO_DATA: Record<string, { title: string; description: string; keywords: string; canonical: string }> = {
-  home: {
-    title: "Car Rental & Taxi Service in Ahmedabad | Citizen Tours",
+const ROUTE_SEO_DATA: Record<string, { title: string; description: string; keywords: string; canonical: string }> = {
+  "/": {
+    title: "Car Rental & Taxi Service in Ahmedabad | Citizen Tours & Travels",
     description: "Rent Sedans, Innova Crysta, Tempo Travellers & Luxury Buses in Ahmedabad. 24/7 Taxi Rental, Local Sightseeing & Outstation Tour Packages with Verified Drivers.",
     keywords: "car rental ahmedabad, taxi service ahmedabad, innova crysta rental ahmedabad, tempo traveller ahmedabad, outstation cab ahmedabad, citizen tours and travels, ahmedabad cab service",
     canonical: "https://citizentoursandtravels.com/",
   },
-  services: {
+  "/about": {
+    title: "About Us: Trusted Car Rental Ahmedabad | Citizen Tours & Travels",
+    description: "Founded in 2007, Citizen Tours & Travels is Ahmedabad's most trusted transport provider with 18+ years of highway experience and verified chauffeurs.",
+    keywords: "about citizen tours and travels, travel agency in navrangpura ahmedabad, best tour operator ahmedabad",
+    canonical: "https://citizentoursandtravels.com/about",
+  },
+  "/services": {
     title: "Cab Rental & Transport Services Ahmedabad | Citizen Tours",
     description: "Comprehensive transport solutions in Ahmedabad: Airport Pickups, Corporate Employee Transit, Wedding Bus Contracts, Outstation Cabs, and Sightseeing.",
     keywords: "ahmedabad airport taxi, corporate car hire ahmedabad, wedding bus rental ahmedabad, local full day cab ahmedabad",
-    canonical: "https://citizentoursandtravels.com/#services",
+    canonical: "https://citizentoursandtravels.com/services",
   },
-  fleet: {
-    title: "Rent Innova Crysta & Tempo Traveller | Citizen Tours",
+  "/fleet": {
+    title: "Rent Innova Crysta & Tempo Traveller | Citizen Tours & Travels",
     description: "Explore our sanitized fleet: Swift Dzire, Ertiga, Toyota Innova Crysta, 12-26 Seater AC Tempo Travellers, Force Urbania, and 56-Seater Luxury Coaches.",
     keywords: "innova crysta price per km ahmedabad, 17 seater tempo traveller rental ahmedabad, force urbania rent ahmedabad, luxury bus hire ahmedabad",
-    canonical: "https://citizentoursandtravels.com/#fleet",
+    canonical: "https://citizentoursandtravels.com/fleet",
   },
-  packages: {
-    title: "Gujarat & Rajasthan Tour Packages | Citizen Travels",
+  "/tour-packages": {
+    title: "Gujarat & Rajasthan Tour Packages | Citizen Tours & Travels",
     description: "Handcrafted tour packages: Statue of Unity Weekend, Somnath Dwarka Pilgrimage, Rajasthan Palace Circuit, Udaipur Romantic Getaway, and Mount Abu.",
     keywords: "statue of unity tour package ahmedabad, somnath dwarka tour package, gujarat heritage tour, rajasthan tour package from ahmedabad",
-    canonical: "https://citizentoursandtravels.com/#packages",
+    canonical: "https://citizentoursandtravels.com/tour-packages",
   },
-  about: {
-    title: "About Us: Trusted Car Rental Ahmedabad | Citizen Tours",
-    description: "Founded in 2007, Citizen Tours & Travels is Ahmedabad's most trusted transport provider with 18+ years of highway experience and verified chauffeurs.",
-    keywords: "about citizen tours and travels, travel agency in navrangpura ahmedabad, best tour operator ahmedabad",
-    canonical: "https://citizentoursandtravels.com/#about",
+  "/gallery": {
+    title: "Vehicle & Tour Photo Gallery | Citizen Tours & Travels",
+    description: "View photos of clean Toyota Innova Crysta, Maharaja Tempo Travellers, luxury buses, wedding decor cars, and tour memories from Rann of Kutch and Statue of Unity.",
+    keywords: "citizen travels photo gallery, tempo traveller photos ahmedabad, innova crysta interior pictures",
+    canonical: "https://citizentoursandtravels.com/gallery",
   },
-  contact: {
+  "/testimonials": {
+    title: "Customer Reviews & Ratings (4.9/5) | Citizen Tours & Travels",
+    description: "Read authentic customer reviews and traveler testimonials for Citizen Tours & Travels Ahmedabad. 4.9/5 Google rating based on 1200+ satisfied clients.",
+    keywords: "citizen tours reviews, best cab service reviews ahmedabad, citizen travels ratings",
+    canonical: "https://citizentoursandtravels.com/testimonials",
+  },
+  "/faq": {
+    title: "Car Rental & Taxi Booking FAQs | Citizen Tours & Travels",
+    description: "Find answers to booking procedures, driver allowances, toll charges, cancellation policies, and night charges for cab rentals in Ahmedabad.",
+    keywords: "ahmedabad taxi faq, car rental pricing rules ahmedabad, tempo traveller booking terms",
+    canonical: "https://citizentoursandtravels.com/faq",
+  },
+  "/blog": {
+    title: "Gujarat Travel Guides & Road Trip Tips | Citizen Tours & Travels",
+    description: "Expert road-trip routing secrets, hidden heritage spots inside Gujarat, and essential tips for group travel and outstation cab safety.",
+    keywords: "gujarat travel guide, road trip tips ahmedabad, best time to visit statue of unity, somnath route guide",
+    canonical: "https://citizentoursandtravels.com/blog",
+  },
+  "/contact": {
     title: "Contact Us for Cab Rental in Ahmedabad | Citizen Tours",
     description: "Contact Citizen Tours & Travels 24/7 at +91 97240 02200 or visit our head office at Navrangpura, Ahmedabad for instant quotes and bookings.",
     keywords: "contact citizen travels ahmedabad, citizen travels phone number, ahmedabad taxi booking number",
-    canonical: "https://citizentoursandtravels.com/#contact",
+    canonical: "https://citizentoursandtravels.com/contact",
   },
-  faqs: {
-    title: "Car Rental & Taxi Booking FAQs | Citizen Tours Ahmedabad",
-    description: "Find answers to booking procedures, driver allowances, toll charges, cancellation policies, and night charges for cab rentals in Ahmedabad.",
-    keywords: "ahmedabad taxi faq, car rental pricing rules ahmedabad, tempo traveller booking terms",
-    canonical: "https://citizentoursandtravels.com/#faqs",
-  },
-  blog: {
-    title: "Gujarat Travel Guides & Road Trip Tips | Citizen Tours",
-    description: "Expert road-trip routing secrets, hidden heritage spots inside Gujarat, and essential tips for group travel and outstation cab safety.",
-    keywords: "gujarat travel guide, road trip tips ahmedabad, best time to visit statue of unity, somnath route guide",
-    canonical: "https://citizentoursandtravels.com/#blog",
+  "/book-my-ride": {
+    title: "Book My Ride - Instant Cab Reservation | Citizen Tours",
+    description: "Reserve your Sedan, SUV, Innova Crysta, or Tempo Traveller in Ahmedabad. Instant transparent per-km quote sent directly to WhatsApp.",
+    keywords: "book cab online ahmedabad, innova booking ahmedabad, tempo traveller online reservation",
+    canonical: "https://citizentoursandtravels.com/book-my-ride",
   },
 };
 
-export function SEOHead({ currentSection = "home" }: SEOProps) {
+export function SEOHead() {
+  const location = useLocation();
+
   useEffect(() => {
-    const seoData = SECTION_SEO_DATA[currentSection] || SECTION_SEO_DATA.home;
+    const seoData = ROUTE_SEO_DATA[location.pathname] || ROUTE_SEO_DATA["/"];
 
     // 1. Update Title
     document.title = seoData.title;
@@ -98,9 +115,6 @@ export function SEOHead({ currentSection = "home" }: SEOProps) {
     updateMetaTag("name", "geo.position", "23.0368;72.5615");
     updateMetaTag("name", "ICBM", "23.0368, 72.5615");
 
-    // Google Search Console Verification Ready
-    updateMetaTag("name", "google-site-verification", "google_site_verification_token_placeholder");
-
     // Robots
     updateMetaTag("name", "robots", "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1");
 
@@ -129,7 +143,7 @@ export function SEOHead({ currentSection = "home" }: SEOProps) {
       "priceRange": "₹₹",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Citizen House, Ground Floor, Opposite C.G. Road Bus Stop, CG Road, Navrangpura",
+        "streetAddress": "Ground Floor, Opposite C.G. Road Bus Stop, CG Road, Navrangpura",
         "addressLocality": "Ahmedabad",
         "addressRegion": "Gujarat",
         "postalCode": "380009",
@@ -152,52 +166,6 @@ export function SEOHead({ currentSection = "home" }: SEOProps) {
         "reviewCount": "1280",
         "bestRating": "5",
         "worstRating": "1"
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Ahmedabad" },
-        { "@type": "State", "name": "Gujarat" },
-        { "@type": "State", "name": "Rajasthan" },
-        { "@type": "City", "name": "Udaipur" },
-        { "@type": "City", "name": "Mumbai" },
-        { "@type": "City", "name": "Statue of Unity" }
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Car Rental & Tour Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Outstation Car Rental & Taxi Service",
-              "description": "Sedan and SUV cab booking with experienced drivers for intercity travel."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Toyota Innova Crysta Rental",
-              "description": "Premium 6+1 and 7+1 AC Innova Crysta rental for long highway journeys."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "12 to 26 Seater Tempo Traveller Rental",
-              "description": "Spacious luxury AC Tempo Travellers for group pilgrimages and family tours."
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Statue of Unity & Gujarat Tour Packages",
-              "description": "All-inclusive tour packages with door-to-door cab transport."
-            }
-          }
-        ]
       }
     };
 
@@ -210,7 +178,8 @@ export function SEOHead({ currentSection = "home" }: SEOProps) {
     }
     schemaScript.textContent = JSON.stringify(schemaData);
 
-  }, [currentSection]);
+  }, [location.pathname]);
 
   return null;
 }
+
